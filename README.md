@@ -110,7 +110,7 @@ The `publish_to` method will send a post request to the Faye server (using `Net:
 
 ## Serving Faye over HTTPS (with Thin)
 
-To server Faye over HTTPS you could create a thin configuration file `config/private_pub_thin.yml` similar to the following:
+To serve Faye over HTTPS you could create a thin configuration file `config/private_pub_thin.yml` similar to the following:
 
 ```yaml
 ---
@@ -132,6 +132,20 @@ Finally start up Thin from the project root.
 thin -C config/private_pub_thin.yml start
 ```
 
+## Serving Faye with Redis engine
+
+To serve Faye with Redis engine, you should create `config/private_pub_redis.yml`
+
+```yaml
+production:
+  host: redis_host
+  port: redis_port
+  password: redis_password
+  database: redis_database
+  namespace: '/namespace'
+```
+
+Note: database and namespace are optional.
 
 ##  Project Status
 
