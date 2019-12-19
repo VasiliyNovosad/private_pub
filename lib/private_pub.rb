@@ -75,13 +75,14 @@ module PrivatePub
       yaml = YAML.load_file(filename)[environment.to_s]
       options = { :engine => { :type => Faye::Redis } }
       yaml.each {|k, v| options[:engine][k.to_sym] = v}
-      options
+      @default_options.merge!(options)
     end
 
     # Returns the Faye Rack application.
     # Any options given are passed to the Faye::RackAdapter.
-    def faye_app(options = {})
-      Faye::RackAdapter.new(@default_options.merge!(options))
+    def faye_app()
+      p @default_options
+      Faye::RackAdapter.new(@default_options)
     end
   end
 
